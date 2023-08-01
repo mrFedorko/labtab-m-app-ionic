@@ -5,8 +5,10 @@ const config: CapacitorConfig = {
   appName: 'labtab-m-app',
   webDir: 'dist',
   server: {
-    androidScheme: 'https'
-  }
+    androidScheme: 'http',
+    allowNavigation: ["http://46.229.213.229"],
+  },
+  
 };
 
 export default config;

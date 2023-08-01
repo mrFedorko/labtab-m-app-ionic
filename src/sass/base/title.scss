@@ -1,0 +1,23 @@
+.title{
+    font-size: 13px;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 15px;
+    &__white{
+        color: white;
+    }
+    &__header{
+        height: 15px;
+    }
+}
+.subtitle{
+    font-size: 11px;
+    text-align: left;
+    margin-bottom: 15px;
+}
+.phone{
+    font-size: 12px;
+}
+.text{
+    font-size: 9px;
+}
