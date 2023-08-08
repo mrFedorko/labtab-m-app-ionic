@@ -12,7 +12,6 @@ export const authApi = api.injectEndpoints({
             }),
             async onQueryStarted (args, {dispatch, getState}){
                 try {
-                    console.log('qury started.....')
                 } catch (error) {
                     dispatch(sMessageCh('Ошибка соединения с сервером'))
                 }

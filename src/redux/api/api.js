@@ -3,7 +3,7 @@ import { setCredentials, clearStore } from '../store/authSlice';
 import { sMessageCh } from '../store/sMessageSlice';
 import { CapacitorHttp } from '@capacitor/core';
 
-const baseUrl = 'http://46.229.213.229:8000';
+const baseUrl = 'https://45.132.50.167:8080';
 
 const baseQuery = fetchBaseQuery({
     baseUrl,

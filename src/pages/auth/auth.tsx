@@ -4,10 +4,13 @@ import logo from '../../assets/logo.svg'
 import Intro from '../../components/intro/intro';
 import { Preferences } from '@capacitor/preferences';
 import { Device } from '@capacitor/device';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLoginMutation } from '../../redux/api/authApi.js';
 import { isAuthCh, setCredentials, userIdCh } from '../../redux/store/authSlice';
-
+import { Http, HttpResponse } from '@capacitor-community/http';
+import { CapacitorHttp } from '@capacitor/core'
+import { HttpMethod, useQuery } from '../../queries/base.query';
+import { CapacitorCookies } from '@capacitor/core';
 
 const INTRO_KEY = 'intro-seen'
 
@@ -23,52 +26,36 @@ const Auth: React.FC = () => {
     chekStorage();
   }, [])
 
-  const [login, setLogin] = useState('3@mail.ru');
-  const [pass, setPass] = useState('123123');
+  const dispatch = useDispatch();
+  const [login, setLogin] = useState('admin');
+  const [pass, setPass] = useState('admin');
   const [introSeen, setIntroSeen] = useState(false);
   const [present, dismiss] = useIonLoading();
-  const dispatch = useDispatch();
-  const [logging, _ ] = useLoginMutation();
 
-  const handleAuth = async (e: any) => {
-    
-    e.preventDefault();
-    
-    console.log('logging...');
+  const userState = useSelector((state: any) => state.auth)
 
-
-    setTimeout(async () => {
-      dismiss();
-    }, 2000);
-    const id = Device.getId();
-    console.log(id)
+  const handleAuth = async (e:any) => {
     
+    e.preventDefault()
+    
+    const response: HttpResponse = await useQuery({
+      url: '/auth',
+      data: {email: login, password: pass},
+      method: HttpMethod.POST,
+    });
+    
+    if(response.status !== 200){
+      console.log(response.data,'  ', response.status);
+      return console.log('request error');
+      
+    } else {
+      console.log('request status ok');
+      dispatch(setCredentials({...response.data, email: login}))
+      router.push('/app/info')
+    }
 
   };
-
-  const handleLogin = async (e: any) =>  {
-      e.preventDefault();
-      console.log('logging...');
-
-      if(!login || !pass){
-         console.log('error')
-         return
-      }
-      console.log(login, pass);
-      try {
-        const userData = await logging({email: login, password: pass}).unwrap();
-            dispatch(setCredentials({...userData, email:login}));
-            dispatch(isAuthCh(true));
-            dispatch(userIdCh(userData));
-            setLogin('');
-            setPass('');
-            router.push('/app', 'forward')
-          
-      } catch (error) {
-          console.log(error);
-      }
-  };
-
+  
   const handleFinishIntro = () => {
     console.log('finish intro');
     Preferences.set({key: INTRO_KEY, value: '1'})
@@ -102,7 +89,7 @@ const Auth: React.FC = () => {
         <IonContent className='ion-justify-content-center ion-align-items-center ion-padding' scrollY={false}>
           <IonCard>
             <IonCardContent>
-              <form onSubmit={handleLogin}>
+              <form onSubmit={handleAuth}>
                 <IonInput
                   className='ion-margin-top' 
                   label='Логин'
@@ -133,6 +120,7 @@ const Auth: React.FC = () => {
                   expand='full'
                   type='button'
                   routerLink='/setApp'
+                  onClick={handleAuth}
                 />
                 <IonButton
                   color={'medium'}

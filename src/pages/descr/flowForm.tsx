@@ -1,5 +1,6 @@
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
+import ScanButton from '../../components/intro/scanButton';
 
 const FlowForm: React.FC = () => {
 
@@ -14,7 +15,7 @@ const FlowForm: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-                UI goes here...
+                <ScanButton/>
             </IonContent>
         </IonPage>
     );
