@@ -10,9 +10,9 @@ const Menu: React.FC = () => {
 
     const paths = [
         {name: "Профиль", url: '/app/info', icon: personCircleOutline},
-        {name: "Реактив", url: '/app/descr', icon: flaskOutline},
-        {name: "Черновики", url: '/app/drafts', icon: bookOutline},
+        {name: "Реактивы", url: '/app/descr', icon: flaskOutline},
         {name: "Колонки", url: '/app/columns', icon: bookOutline},
+        {name: "Черновики", url: '/app/drafts', icon: bookOutline},
 
     ]
 
@@ -39,7 +39,7 @@ const Menu: React.FC = () => {
                 <Route exact path="/app/info" component = {UserInfo}></Route>
                 <Route path="/app/drafts" component = {Drafts}></Route>
                 <Route path="/app/descr" component = {Descr}></Route>
-                <Route exact path="/app">
+                <Route exact path="/app" >
                     <Redirect to="/app/info"/>
                 </Route>
             </IonRouterOutlet>

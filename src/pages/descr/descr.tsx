@@ -2,7 +2,7 @@ import { IonButtons, IonContent, IonHeader, IonIcon, IonLabel, IonMenuButton, Io
 import React from 'react';
 import { Redirect, Route } from 'react-router';
 import DescrInfo from './descrInfo';
-import Scanner from './scanner';
+import Scanner from '../scanner/scanner';
 import FlowForm from './flowForm';
 import { scanCircle, informationCircle, pencil } from 'ionicons/icons'
 

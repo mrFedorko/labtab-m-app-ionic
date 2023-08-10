@@ -3,7 +3,7 @@ import { informationCircle, pencil, scanCircle } from 'ionicons/icons';
 import React from 'react';
 import { Redirect, Route } from 'react-router';
 import ColumnDescr from './colDescr';
-import Scanner from '../descr/scanner';
+import Scanner from '../scanner/scanner';
 import ColumnFlowForm from './colFlow';
 
 const Column: React.FC = () => {

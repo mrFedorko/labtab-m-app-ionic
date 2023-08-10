@@ -2,6 +2,7 @@ import { HttpResponse } from '@capacitor-community/http';
 import { CapacitorHttp  } from '@capacitor/core'
 import { useDispatch, useSelector } from 'react-redux';
 import { clearStore, setCredentials } from '../redux/store/authSlice';
+import { useIonRouter } from '@ionic/react';
 
 
 
@@ -58,8 +59,9 @@ export const useQuery = async (
 }
 export const useAuthQuery = () => { 
    
-    const { token, email } = useSelector((state: any) => state.auth)
-    const dispatch = useDispatch()
+    const { token, email } = useSelector((state: any) => state.auth);
+    const dispatch = useDispatch();
+    const router = useIonRouter();
     const authQuery = async (
         options: IQueryOptions,  
         ) => {
@@ -106,9 +108,8 @@ export const useAuthQuery = () => {
                     return
                 }
             } catch (error) {
-                console.log('REauth error')
-                console.log(error);
                 dispatch(clearStore);
+                
             }
         }
         return response   

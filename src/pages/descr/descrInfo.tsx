@@ -35,21 +35,24 @@ const DescrInfo: React.FC = () => {
             <IonContent className="ion-padding">
                 <IonList>
                     <IonListHeader>
-                        <IonLabel>{name}, <p>{itemId}</p></IonLabel>
-                        <IonLabel>{type}, {!!standartType && standartType}</IonLabel>
+                        <IonLabel>{name}, <p>id: {itemId}</p></IonLabel>
+                        
                         <IonButton 
                             color={'secondary'}
                             onClick={handleDetails}
-                        >{details ? 'Подробнее' : 'Скрыть'}</IonButton>
+                        >{!details ? 'Подробнее' : 'Скрыть'}</IonButton>
                     </IonListHeader>
                     <IonItem>
+                        <IonLabel>{type}, {!!standartType && standartType}</IonLabel>
+                    </IonItem>
+                    <IonItem>
                         <IonLabel>
-                            Остаток: {restUnits}, {units}
+                            Остаток: {restUnits} {units}
                         </IonLabel>
                     </IonItem>
                     {details && <>
                         <IonItem>
-                            <IonLabel>: {CAS}</IonLabel>
+                            <IonLabel>CAS: {CAS}</IonLabel>
                         </IonItem>
                         <IonItem>
                             <IonLabel>Производитель: {manufacturer}</IonLabel>

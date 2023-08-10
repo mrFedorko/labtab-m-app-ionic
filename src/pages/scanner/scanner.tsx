@@ -1,11 +1,11 @@
-import { IonButton, IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, useIonAlert, useIonRouter, useIonViewDidEnter, useIonViewWillLeave } from '@ionic/react';
+import { IonButton, IonButtons, IonCard, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, useIonAlert, useIonRouter, useIonViewDidEnter, useIonViewWillLeave } from '@ionic/react';
 import React, { useEffect, useState } from 'react';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner'
 import { useAuthQuery } from '../../queries/base.query';
 import { useDispatch,  } from 'react-redux';
 import { reagentFill } from '../../redux/store/activeReagSlice';
 import { columnFill } from '../../redux/store/activeColumnSlice';
-
+import './scanner.scss'
 
 const Scanner: React.FC = () => {
 
@@ -111,12 +111,10 @@ const Scanner: React.FC = () => {
                     <IonTitle>Сканировать код...</IonTitle>
                     
                 </IonToolbar>
-                <IonContent>
-                <IonButton
-                      children = "Сканировать снова"
-                      color={'tertiary'}
-                      onClick={startScan}
-                    />
+                <IonContent className="ion-justify-content-center ion-align-items-center ">
+                    <IonCard className='scanner-card'>
+
+                    </IonCard>
                 </IonContent>
             </IonHeader>
         </IonPage>
